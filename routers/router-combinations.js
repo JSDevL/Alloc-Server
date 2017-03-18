@@ -2,10 +2,10 @@ const _ = require('underscore');
 const express = require('express');
 const Router = new express.Router;
 
-const {Combination} = require('../models.js');
+const {Batch} = require('../models.js');
 
 /* read all combinations */
-Router.get('/combinations', function(req, res, next){
+Router.get('/batches', function(req, res, next){
 	Combination.find({}).populate('conflicts').sort( { _id : 1 } ).exec( function(err, combis){
 		if(err) return next(err);
 		res.status(200);

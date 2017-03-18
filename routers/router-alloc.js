@@ -2,7 +2,7 @@ const _ = require('underscore');
 const express = require('express');
 const router = express.Router();
 
-const {Block, Room} = require('../models.js');
+const {Block, Room, Combination} = require('../models.js');
 
 // get blocks
 router.get('/alloc/blocks', function(req, res, next){
@@ -24,10 +24,23 @@ router.param("roomID", function(req, res, next, roomID){
 // post batch to room
 router.post('/alloc/rooms/:roomID', function(req, res, next){
 	req.room.batches.push(req.body.batch);
-	req.room.save( function(err){
+	
+	/* check for conflicts */
+	const currentCombiID = req.body.batch.combination;
+	Combination.findById(currentCombiID, function(err, combi){
 		if(err) return next(err);
-		res.status(200);
-		res.send();
+		_.each(req.room.batches, function(batch){
+			if( _.find(combi.conflicts, function(conflict){ return conflict.toString() == batch.toString() }) ){
+				let err = new Error("batch conflict occured");
+				next(err);
+			}
+		});
+
+		req.room.save( function(err){
+			if(err) return next(err);
+			res.status(200);
+			res.send();
+		});
 	});
 });
 
