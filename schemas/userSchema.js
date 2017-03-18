@@ -26,6 +26,46 @@ const userSchema = new Schema({
 			},
 			message: 'Password needs to be longer than eight characters'
 		}
+	},
+	stages: {
+		prereqs: {
+			state: {
+				type: Boolean,
+				default: false
+			},
+			subStages: {
+				building: {
+					state: {
+						type: Boolean,
+						default: false
+					}
+				},
+				combinations: {
+					state: {
+						type: Boolean,
+						default: false
+					}
+				},
+				sessions: {
+					state: {
+						type: Boolean,
+						default: false
+					}
+				}
+			}
+		},
+		combinationsToSessions: {
+			state: {
+				type: Boolean,
+				default: false
+			}
+		},
+		allocation: {
+			state: {
+				type: Boolean,
+				default: false
+			}
+		}
 	}
 });
 
