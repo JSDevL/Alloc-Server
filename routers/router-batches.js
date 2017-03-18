@@ -28,7 +28,7 @@ Router.get('/batches', function(req, res, next){
 	});
 });
 
-Router.param(':batchID', function(req, res, next, batchID){
+Router.param('batchID', function(req, res, next, batchID){
 	Batch.findById(batchID, function(err, batch){
 		if(err) return next(err);
 		req.batch = batch;
