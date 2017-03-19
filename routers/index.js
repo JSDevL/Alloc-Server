@@ -10,6 +10,7 @@ const loginRouter = require('./login.js');
 /* all routes after authentication */
 const routerStages = require('./router-stages.js');
 const routerBatches = require('./router-batches.js');
+const routerSessions = require('./router-sessions.js');
 
 
 const authenticate = function(req, res, next) {
@@ -33,6 +34,6 @@ const authenticate = function(req, res, next) {
 	}
 };
 
-router.use(loginRouter, authenticate, routerStages, routerBatches);
+router.use(loginRouter, authenticate, routerStages, routerBatches, routerSessions);
 
 module.exports = router;

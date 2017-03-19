@@ -39,7 +39,7 @@ const batchSchema = new Schema({
 });
 
 /* unique compound index */
-batchSchema.index({ combination: 1, year: 1}, { unique: true });
+batchSchema.index({ combination: 1, year: 1}, { sparse: true });
 /* validations */
 batchSchema.pre("save", function(next){
 	// remove any duplicate conflicts
