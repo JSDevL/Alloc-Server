@@ -27,8 +27,7 @@ const authenticate = function(req, res, next) {
 			}
 		});
 	} else {
-        // if there is no token
-        // return an error
+        // if there is no token, return an error
 		let err = new Error("Need to login");
 		next(err);
 	}
