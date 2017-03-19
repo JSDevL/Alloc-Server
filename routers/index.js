@@ -1,10 +1,16 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
+
+
 /* all routes before authentication */
 const loginRouter = require('./login.js');
+
+
 /* all routes after authentication */
-const batchesRouter = require('./router-batches.js');
+const routerStages = require('./router-stages.js');
+const routerBatches = require('./router-batches.js');
+
 
 const authenticate = function(req, res, next) {
     // check query for token
@@ -28,6 +34,6 @@ const authenticate = function(req, res, next) {
 	}
 };
 
-router.use(loginRouter, authenticate, batchesRouter);
+router.use(loginRouter, authenticate, routerStages, routerBatches);
 
 module.exports = router;
