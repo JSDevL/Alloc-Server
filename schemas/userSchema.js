@@ -29,28 +29,22 @@ const userSchema = new Schema({
 	},
 	stages: {
 		prereqs: {
-			state: {
-				type: Boolean,
-				default: false
+			building: {
+				state: {
+					type: Boolean,
+					default: false
+				}
 			},
-			subStages: {
-				building: {
-					state: {
-						type: Boolean,
-						default: false
-					}
-				},
-				combinations: {
-					state: {
-						type: Boolean,
-						default: false
-					}
-				},
-				sessions: {
-					state: {
-						type: Boolean,
-						default: false
-					}
+			combinations: {
+				state: {
+					type: Boolean,
+					default: false
+				}
+			},
+			sessions: {
+				state: {
+					type: Boolean,
+					default: false
 				}
 			}
 		},

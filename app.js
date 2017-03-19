@@ -17,11 +17,14 @@ mongoose.connect('mongodb://localhost/alloc-db');
 const db = mongoose.connection;
 db.on('error', function(err){
 	app.set('isMongoUP', false);
+	console.log(err);
 });
 
 app.use(function(req, res, next){
-	if(app.get('isMongoUP') === false)
+	if(app.get('isMongoUP') === false){
+		res.status(500);
 		res.send("mongo down");
+	}
 	next();
 });
 
