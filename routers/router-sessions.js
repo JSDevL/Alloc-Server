@@ -78,6 +78,4 @@ Router.delete('/sessions/:sessionID/batches/:batchID', function(req, res, next){
 	});
 });
 
-
-
 module.exports = Router;
